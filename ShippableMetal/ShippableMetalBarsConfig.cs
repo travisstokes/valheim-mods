@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using static ItemDrop;
 
 namespace OVC.GameMods.Valheim.ShippableMetal
 {
@@ -20,7 +19,7 @@ namespace OVC.GameMods.Valheim.ShippableMetal
             PackageNextItemHotkey = plugin.Config.Bind("General", "PackageNextItemHotkey", KeyCode.J, "Hotkey for scrolling through packageable options").Value;
             UnpackageItemHotkey = plugin.Config.Bind("General", "UnpackageItemHotkey", KeyCode.K, "Hotkey for unpackaging an item").Value;
             UnpackageNextItemHotkey = plugin.Config.Bind("General", "UnpackageNextItemHotkey", KeyCode.L, "Hotkey for scrolling through unpackageable options").Value;
-            MinimumStationLevel = plugin.Config.Bind("General", "MinimumStationLevel", 1, "Minimum forge level for packaging and unpackaging items").Value;
+            MinimumStationLevel = plugin.Config.Bind("General", "MinimumStationLevel", 3, "Minimum forge level for packaging and unpackaging items").Value;
         }
     }
 }

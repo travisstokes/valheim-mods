@@ -84,7 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ItemDataExtensions.cs" />
-    <Compile Include="Extensions\PlayerExtensions.cs" />
     <Compile Include="Patches\CraftingStation_GetHoverText_Patch.cs" />
     <Compile Include="Patches\Humanoid_UseItem_Patch.cs" />
     <Compile Include="Patches\Player_Update_Patch.cs" />
