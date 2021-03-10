@@ -23,6 +23,8 @@ namespace OVC.GameMods.Valheim.ShippableMetal
         public static RotatingMenuManager<ItemData> PackageableItemsMenuManager;
         public static RotatingMenuManager<ItemData> UnPackageableItemsMenuManager;
 
+        public const string CRAFTING_STATION_NAME_FORGE = "$piece_forge";
+
         private void Awake()
         {
             Func<List<ItemData>> playerItemsLookup = () => Player.m_localPlayer?.GetInventory()?.GetAllItems() ?? new List<ItemData>();

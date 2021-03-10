@@ -7,7 +7,7 @@ namespace OVC.GameMods.Valheim.ShippableMetal
     {
         public static string Postfix(string __result, CraftingStation __instance)
         {
-            if(__instance.GetLevel() < ShippableMetalBarsConfig.MinimumStationLevel)
+            if(__instance.m_name != ShippableMetalBars.CRAFTING_STATION_NAME_FORGE || __instance.GetLevel() < ShippableMetalBarsConfig.MinimumStationLevel)
             {
                 return __result;
             }
