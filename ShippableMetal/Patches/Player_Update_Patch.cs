@@ -30,7 +30,7 @@ namespace OVC.GameMods.Valheim.ShippableMetal
             if (ShippableMetalBarsConfig.MinimumStationLevel > 0)
             {
                 List<CraftingStation> stations = new List<CraftingStation>();
-                CraftingStation.FindStationsInRange("$piece_forge", (Vector3)__instance.transform.position, 1.7f, stations);
+                CraftingStation.FindStationsInRange(ShippableMetalBars.CRAFTING_STATION_NAME_FORGE, (Vector3)__instance.transform.position, 1.7f, stations);
                 if (!stations.Exists(s => s.GetLevel() >= ShippableMetalBarsConfig.MinimumStationLevel))
                 {
                     return;
