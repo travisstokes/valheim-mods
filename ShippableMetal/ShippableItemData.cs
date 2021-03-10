@@ -55,8 +55,8 @@ namespace OVC.GameMods.Valheim.ShippableMetal
                 itemDrop.m_itemData.Extended()?.GetComponent<ShippableItemData>()?.ApplyPackagedAttributes();
             }
             player.Message(MessageHud.MessageType.TopLeft, $"Packaged {Localization.instance.Localize(ItemData.m_shared.m_name)}", 1, ItemData.GetIcon());
-            inventory.AddItem(itemDrop.m_itemData);
-            Object.DestroyImmediate(gameObject);
+
+            AddOrSpawnItem(player, inventory, gameObject, itemDrop.m_itemData);
         }
 
         private void RemoveCurrent(Inventory inventory, int amount = 1)
@@ -79,8 +79,28 @@ namespace OVC.GameMods.Valheim.ShippableMetal
         public void Unpackage(Player player, Inventory inventory)
         {
             RemoveCurrent(inventory);
-            inventory.AddItem(OriginalPrefabName, 1, 1, 0, 0, "");
+
+            var itemPrefab = ObjectDB.instance.GetItemPrefab(ItemData.m_dropPrefab.name);
+            ZNetView.m_forceDisableInit = true;
+            GameObject gameObject = Object.Instantiate(itemPrefab);
+            ZNetView.m_forceDisableInit = false;
+            var itemDrop = gameObject.GetComponent<ItemDrop>();
+
+            AddOrSpawnItem(player, inventory, gameObject, itemDrop.m_itemData);
+            
             player.Message(MessageHud.MessageType.TopLeft, $"Unpackaged {OriginalLocalizedName}", 1, ItemData.GetIcon());
+        }
+
+        private void AddOrSpawnItem(Player player, Inventory inventory, GameObject gameObject, ItemDrop.ItemData item)
+        {
+            if (inventory.CanAddItem(gameObject) && inventory.AddItem(item))
+            {
+                Object.DestroyImmediate(gameObject);
+            } else
+            {
+                gameObject.GetComponent<Rigidbody>().velocity = Vector3.up * 4f;
+                player.m_dropEffects.Create(player.gameObject.transform.position, Quaternion.identity);
+            }
         }
 
         public static void OnNewExtendedItemData(ExtendedItemData itemdata)

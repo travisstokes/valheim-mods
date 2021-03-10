@@ -80,7 +80,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ShippableMetalBarsConfig.cs" />
+    <Compile Include="WorkshopImprovementsConfig.cs" />
     <Compile Include="Smelter_GetHoverText_Patch.cs" />
     <Compile Include="WorkshopImprovements.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
